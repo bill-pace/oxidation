@@ -13,5 +13,5 @@ FetchContent_MakeAvailable(Corrosion)
 
 corrosion_import_crate(MANIFEST_PATH prime_iter/Cargo.toml)
 
-add_executable(oxidation main.cpp)
+add_executable(oxidation main.cpp PrimeIterator.cpp)
 target_link_libraries(oxidation PUBLIC prime_iter)

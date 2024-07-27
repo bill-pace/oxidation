@@ -1,22 +1,19 @@
 #include <iostream>
 
-#include "prime_iter.h"
+#include "PrimeIterator.h"
 
 int main() {
-    size_t limit = 50;
-    PrimeIter * iterator = alloc_prime_iter(limit);
-    size_t read_limit = get_iter_limit(iterator);
-    if (read_limit == limit) {
-        std::cout << "Successfully re-read the limit" << std::endl;
+    size_t limit = 500;
+    auto primes = PrimeIterator(limit);
+    if (limit == primes.get_limit()) {
+        std::cout << "Found correct limit" << std::endl;
     } else {
-        std::cout << "Oops" << std::endl;
+        std::cout << "Failed to find correct limit" << std::endl;
     }
 
-    while (size_t prime = advance_iter(iterator)) {
-        std::cout << "Found prime " << prime << std::endl;
+    for (auto prime : primes) {
+        std::cout << "Found prime number " << prime << "\n";
     }
-
-    free_prime_iter(iterator);
 
     return 0;
 }
