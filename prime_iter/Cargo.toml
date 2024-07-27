@@ -1,0 +1,11 @@
+[package]
+name = "prime_iter"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "prime_iter"
+path = "src/lib.rs"
+crate-type = ["staticlib"]
+
+[dependencies]
