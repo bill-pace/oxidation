@@ -9,13 +9,13 @@ extern "C" {
 
 struct PrimeIter;
 
-PrimeIter * alloc_prime_iter(uintptr_t limit);
+struct PrimeIter * alloc_prime_iter(uintptr_t limit);
 
-void free_prime_iter(PrimeIter * iter);
+void free_prime_iter(struct PrimeIter * iter);
 
-uintptr_t advance_iter(PrimeIter * iter);
+uintptr_t advance_iter(struct PrimeIter * iter);
 
-uintptr_t get_iter_limit(PrimeIter const * iter);
+uintptr_t get_iter_limit(struct PrimeIter const * iter);
 
 #ifdef __cplusplus
 }; // end 'extern "C"'
