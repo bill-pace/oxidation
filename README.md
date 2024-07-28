@@ -4,8 +4,7 @@ The Rust library here defines an iterator that yields prime numbers when calling
 iterator is publicly exposed via an opaque struct and four free functions that enable
 alloc/free, advancing the iterator, and checking its upper limit.
 
-The main() function in main.cpp showcases each of these four functions behaving as intended,
-demonstrating that the library is properly linked.
+The C++ class PrimeIterator wraps these exposed functions to provide RAII and an input iterator, showcased in the main() function. Proper cleanup can be confirmed by running Valgrind or similar tools.
 
 Note that building this project offline will require changes to the CMake file in order to
 have offline access to the Corrosion package. However, the Rust library has no dependencies
