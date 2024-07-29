@@ -11,17 +11,16 @@ public:
     class Iterator {
         friend class PrimeIterator;
 
-        using iterator_category = std::input_iterator_tag;
-        using difference_type = std::ptrdiff_t;
+    public:
+        using difference_type = ptrdiff_t;
         using value_type = size_t;
 
-    public:
         Iterator();
         explicit Iterator(PrimeIterator * parent);
         Iterator(const Iterator &) = delete;
         Iterator & operator=(const Iterator &) = delete;
-        Iterator(Iterator &&) = delete;
-        Iterator & operator=(Iterator &&) = delete;
+        Iterator(Iterator &&) noexcept;
+        Iterator & operator=(Iterator &&) noexcept;
         ~Iterator() = default;
 
         value_type operator*() const;

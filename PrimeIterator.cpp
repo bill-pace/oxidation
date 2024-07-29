@@ -2,6 +2,10 @@
 
 #include "prime_iter.h"
 
+#include <iterator>
+
+static_assert(std::input_iterator<PrimeIterator::Iterator>);
+
 PrimeIterator::PrimeIterator(size_t limit) {
     internal_iterator = alloc_prime_iter(limit);
 }
@@ -53,6 +57,24 @@ PrimeIterator::Iterator::Iterator(PrimeIterator * parent) :
     value = parent->advance_iterator();
 }
 
+PrimeIterator::Iterator::Iterator(Iterator && other) noexcept :
+    value(other.value),
+    parent(other.parent)
+{
+    other.value = 0;
+    other.parent = nullptr;
+}
+
+PrimeIterator::Iterator & PrimeIterator::Iterator::operator=(Iterator && other) noexcept {
+    if (&other == this) return *this;
+
+    value = other.value;
+    parent = other.parent;
+    other.value = 0;
+    other.parent = nullptr;
+    return *this;
+}
+
 PrimeIterator::Iterator::value_type PrimeIterator::Iterator::operator*() const {
     return value;
 }
@@ -62,7 +84,7 @@ PrimeIterator::Iterator & PrimeIterator::Iterator::operator++() {
     return *this;
 }
 
-void PrimeIterator::Iterator::operator++(int v) {
+void PrimeIterator::Iterator::operator++(int) {
     ++*this;
 }
 

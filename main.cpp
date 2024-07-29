@@ -4,7 +4,7 @@
 
 int main() {
     size_t limit = 500;
-    auto primes = PrimeIterator(limit);
+    PrimeIterator primes { limit };
     if (limit == primes.get_limit()) {
         std::cout << "Found correct limit" << std::endl;
     } else {
